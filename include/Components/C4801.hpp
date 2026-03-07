@@ -7,7 +7,6 @@
 
 #ifndef COMPONENT4801
   #define COMPONENT4801
-
   #include "AComponent.hpp"
   #include "IComponent.hpp"
   #include <array>
@@ -33,11 +32,9 @@ public:
   Tristate compute(std::size_t pin) override {
     int i = dIndex(pin);
     if (i < 0) return Undefined;
-
     if (getPinValue(18) != False) return Undefined;
     if (getPinValue(21) != True)  return Undefined;
     if (getPinValue(20) != False) return Undefined;
-
     int a = addr();
     if (a < 0) return Undefined;
     return mem[a][i];
