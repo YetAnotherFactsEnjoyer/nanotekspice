@@ -11,20 +11,15 @@ public:
   C4514() : AComponent("C4514") {}
   ~C4514() override = default;
 
-  void simulate(std::size_t tick) override
-  {
+  void simulate(std::size_t tick) override {
     if (tick <= _currentTick)
       return;
     _currentTick = tick;
-
     Tristate strobe = getPinValue(1);
-
     if (_lastStrobe == True && strobe == False)
       _latched = currentIndex();
-
     if (strobe == Undefined)
       _latched = -1;
-
     _lastStrobe = strobe;
   }
 
@@ -32,15 +27,12 @@ public:
     const int out = outIndexFromPin(pin);
    if (out == -1)
       return Undefined;
-
     Tristate inhibit = getPinValue(23);
     if (inhibit == True)
       return False;
     if (inhibit == Undefined)
       return Undefined;
-
     Tristate strobe = getPinValue(1);
-
     int selected = -1;
     if (strobe == True)
       selected = currentIndex();
@@ -55,8 +47,7 @@ public:
     return (out == selected) ? True : False;
   }
 
-  void setLink(std::size_t pin, IComponent &other, std::size_t otherPin) override
-  {
+  void setLink(std::size_t pin, IComponent &other, std::size_t otherPin) override {
     AComponent::setLink(pin, other, otherPin);
   }
 
@@ -64,8 +55,7 @@ private:
   int _latched{-1};
   Tristate _lastStrobe{Undefined};
 
-  int currentIndex() const
-  {
+  int currentIndex() {
     Tristate a = getPinValue(2);
     Tristate b = getPinValue(3);
     Tristate c = getPinValue(21);
@@ -80,17 +70,16 @@ private:
            ((a == True) ? 1 : 0);
   }
 
-  static int outIndexFromPin(std::size_t pin)
-  {
+  static int outIndexFromPin(std::size_t pin) {
     switch (pin) {
       case 11: return 0;
-      case 9:  return 1;
+      case 9: return 1;
       case 10: return 2;
-      case 8:  return 3;
-      case 7:  return 4;
-      case 6:  return 5;
-      case 5:  return 6;
-      case 4:  return 7;
+      case 8: return 3;
+      case 7: return 4;
+      case 6: return 5;
+      case 5: return 6;
+      case 4: return 7;
       case 18: return 8;
       case 17: return 9;
       case 20: return 10;
