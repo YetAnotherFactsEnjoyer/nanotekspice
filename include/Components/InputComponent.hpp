@@ -8,7 +8,6 @@
 #ifndef INPUTCOMPONENT
   #define INPUTCOMPONENT
   #include "AComponent.hpp"
-#include "IComponent.hpp"
 
 namespace nts {
 class InputComponent: public AComponent {

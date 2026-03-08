@@ -32,7 +32,7 @@ protected:
   }
 
 public:
-  AComponent(const std::string &type) : _type(type), _currentTick(0) {};
+  AComponent(const std::string &type) : _currentTick(0), _type(type) {};
   virtual ~AComponent() = default;
 
   AComponent(const AComponent&) = delete;

@@ -26,9 +26,6 @@ public:
       else if (_value == False) _value = True;
     }
   }
-
-private:
-  bool _updateValue{false};
 };
 }
 
