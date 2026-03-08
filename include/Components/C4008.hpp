@@ -16,12 +16,12 @@
 namespace nts {
 class C4008: public AComponent {
 public:
-  C4008() = default;
+  C4008() : AComponent("C4008") {}
   ~C4008() override = default;
 
   void simulate(std::size_t tick) override { _currentTick = tick ;}
 
-  Tristate compute(std::size_t pin) override {
+  Tristate runLogic(std::size_t pin) override {
     switch (pin) {
       case 3:
         return sumBit(0);

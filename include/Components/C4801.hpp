@@ -15,7 +15,7 @@ namespace nts {
 
 class C4801 : public AComponent {
 public:
-  C4801() = default;
+  C4801() : AComponent("C4801") {}
   ~C4801() override = default;
 
   void simulate(std::size_t tick) override {
@@ -29,7 +29,7 @@ public:
     }
   }
 
-  Tristate compute(std::size_t pin) override {
+  Tristate runLogic(std::size_t pin) override {
     int i = dIndex(pin);
     if (i < 0) return Undefined;
     if (getPinValue(18) != False) return Undefined;

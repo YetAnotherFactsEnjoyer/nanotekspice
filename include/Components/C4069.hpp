@@ -16,9 +16,9 @@
 namespace nts {
 class C4069: public AComponent {
 public :
-  C4069() {
+  C4069() : AComponent("C4069") {
       for (int i = 0; i < 6; i++) {
-          _subGates.push_back(std::make_unique<GateComponent>(Operators::ntsNot, SINGLE_OUTPUT));
+          _subGates.push_back(std::make_unique<GateComponent>("not", Operators::ntsNot, SINGLE_OUTPUT));
       }
   }
 
@@ -49,7 +49,7 @@ public :
       }
   }
 
-  Tristate compute(std::size_t pin) override {
+  Tristate runLogic(std::size_t pin) override {
     switch (pin) {
       case 2:
         return _subGates[0]->compute(2);
